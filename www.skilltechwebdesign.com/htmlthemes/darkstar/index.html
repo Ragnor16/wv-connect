@@ -48,6 +48,9 @@
 	<!-- Slick (carousel) -->
 	<link href="assets/vendor/slick/1.8.1/slick.css" rel="stylesheet">
 	<link href="assets/vendor/slick/1.8.1/slick-theme-skilltech.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0CK5T93V47"></script>
@@ -58,6 +61,57 @@
 
 		gtag('config', 'G-0CK5T93V47');
 	</script>
+	<script src="https://cdn.jsdelivr.net/npm/countup.js@2.0.7"></script>
+	<script>
+        function countDown() {
+            var last = new Date("01/01/2023");
+            var last = (Date.parse(last)) / 1000;
+            var current = new Date();
+            var current = (Date.parse(current) / 1000);
+            var leftTime = last - current;
+            var days = Math.floor(leftTime / 86400); 
+            var hours = Math.floor((leftTime - (days * 86400)) / 3600);
+            var minutes = Math.floor((leftTime - (days * 86400) - (hours * 3600 )) / 60);
+            var seconds = Math.floor((leftTime - (days * 86400) - (hours * 3600) - (minutes * 60)));
+            if (hours < "10") { hours = "0" + hours; }
+            if (minutes < "10") { minutes = "0" + minutes; }
+            if (seconds < "10") { seconds = "0" + seconds; }
+            $("#days").html(days + "<span>Days</span>");
+            $("#hours").html(hours + "<span>Hours</span>");
+            $("#minutes").html(minutes + "<span>Minutes</span>");
+            $("#seconds").html(seconds + "<span>Seconds</span>");
+        }
+        setInterval(function() { countDown(); }, 0);
+    </script>
+	<script>
+		// Set your target date here (e.g., January 1, 2024)
+		const targetDate = new Date('2024-01-01 00:00:00').getTime();
+	
+		// Calculate the remaining time and update the countdown
+		function updateCountdown() {
+			const now = new Date().getTime();
+			const timeRemaining = targetDate - now;
+	
+			// Calculate months, days, hours, and seconds
+			const months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
+			const days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const seconds = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000));
+	
+			// Update the HTML elements with the countdown values
+			document.getElementById("months").textContent = months + " Months";
+			document.getElementById("days").textContent = days + " Days";
+			document.getElementById("hours").textContent = hours + " Hours";
+			document.getElementById("seconds").textContent = seconds + " Seconds";
+		}
+	
+		// Update the countdown every second
+		const countdownInterval = setInterval(updateCountdown, 1000);
+	
+		// Initial update
+		updateCountdown();
+	</script>
+	
 
 </head>
 
@@ -291,7 +345,7 @@
 						<div class="carousel-inner">
 
 							<!-- Slide 1 -->
-							<div class="carousel-item zooming hero-slide-1 sk__hero-slider-item sk__image-back-cover">
+							<div class="carousel-item zooming active hero-slide-1 sk__hero-slider-item sk__image-back-cover">
 								<section class="sk__parallax-background-section sk__hero-item-center-center">
 									<div class="sk__parallax-background-element sk__absolute sk__video-back-cover">
 										<video autoplay loop muted playsinline poster="video-poster.jpg" style="width: 100%; height: 100%; object-fit: cover;">
@@ -334,7 +388,7 @@
 							<!-- /.hero-slide-3 -->
 
 							<!-- Slide 4 -->
-							<div class="carousel-item zooming active hero-slide-2 sk__hero-slider-item sk__image-back-cover">
+							<div class="carousel-item zooming hero-slide-1 sk__hero-slider-item sk__image-back-cover">
 
 								<section class="sk__parallax-background-section sk__hero-item-theme-style">
 									
@@ -460,8 +514,16 @@
 						<div data-depth="0.65" class="sk__absolute">
 							<div class="sk__flex-center sk__absolute px-15px">
 								<div class="flex-child">
-									<h1 class="shadowed super-heading text-center">A massive step forward.</h1>
-									<h2 class="shadowed h2-small text-center">focus on your goals and exectute creativity infused massive leap in design to reach it</h2>
+									<h1 class="shadowed super-heading text-center">Unlock The Future!</h1>
+									<h2 class="shadowed h2-small text-center">Embark on a journey that merges tradition with technology, unlocking unparalleled opportunities for your wedding business.</h2>
+									<div id="countdown" class="flex-wrap d-flex justify-content-center">
+										<div id="days" class="align-items-center flex-column d-flex justify-content-center"></div>
+										<div id="hours" class="align-items-center flex-column d-flex justify-content-center"></div>
+										<div id="minutes" class="align-items-center flex-column d-flex justify-content-center"></div>
+										<div id="seconds" class="align-items-center flex-column d-flex justify-content-center"></div>
+									</div>
+									<h2 class="shadowed h2-small text-center" style="color: rgb(228, 228, 228); margin-top: 10px;">Left until the event begins!</h2>
+
 								</div>
 							</div>
 						</div>
@@ -469,9 +531,19 @@
 						<div data-depth="0.65" class="sk__absolute">
 							<div class="sk__flex-center sk__absolute px-15px">
 								<div class="flex-child text-center">
-									<h1 class="super-heading sk__clipped-text sk__gradient-back-v1">A massive step forward.</h1>
-									<h2 class="h2-small">focus on your goals and exectute creativity infused massive leap in design to reach it</h2>
+									<h1 class="super-heading sk__clipped-text sk__gradient-back-v1">Unlock The Future!</h1>
+									<h2 class="h2-small">Embark on a journey that merges tradition with technology, unlocking unparalleled opportunities for your wedding business.</h2>
+									<div id="countdown" class="flex-wrap d-flex justify-content-center">
+										<div id="days" class="align-items-center flex-column d-flex justify-content-center"></div>
+										<div id="hours" class="align-items-center flex-column d-flex justify-content-center"></div>
+										<div id="minutes" class="align-items-center flex-column d-flex justify-content-center"></div>
+										<div id="seconds" class="align-items-center flex-column d-flex justify-content-center"></div>
+									</div>
+									<h2 class="shadowed h2-small text-center" style="color: rgb(228, 228, 228); margin-top: 10px;">Left until the event begins!</h2>
+									
+
 								</div>
+								
 							</div>
 						</div>
 
